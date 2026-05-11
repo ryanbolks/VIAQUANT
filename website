@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VIAQUANT — Ryan Bolks | Quantitative Analyst & Trader</title>
+<meta name="description" content="Ryan Bolks — Founder of VIAQUANT. Quantitative Analyst & Trader with 800+ verified public predictions. 7+ years across digital assets, equities, and commodities." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black:         #09090c;
+  --card-bg:       #12121a;
+  --border:        rgba(255,255,255,0.07);
+  --border-accent: rgba(126,200,244,0.25);
+  --text-primary:  #eef0f6;
+  --text-secondary:#8890a8;
+  --text-muted:    #42455a;
+  --accent:        #7ec8f4;
+  --accent-dim:    rgba(126,200,244,0.10);
+  --accent-glow:   rgba(126,200,244,0.05);
+  --green:         #6ee0a0;
+  --red:           #e07e7e;
+  --mono: 'DM Mono', monospace;
+  --sans: 'Sora', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--text-primary); font-family: var(--sans); font-size: 15px; line-height: 1.6; min-height: 100vh; overflow-x: hidden; }
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 2.5rem; height: 62px;
+  background: rgba(9,9,12,0.94); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo { font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: 0.24em; color: var(--accent); text-decoration: none; text-transform: uppercase; }
+.nav-links { display: flex; gap: 1.75rem; list-style: none; }
+.nav-links a { font-size: 11px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--accent); }
+.nav-cta { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; color: var(--black); background: var(--accent); padding: 6px 14px; border-radius: 2px; text-decoration: none; text-transform: uppercase; font-weight: 500; transition: opacity 0.2s; white-space: nowrap; }
+.nav-cta:hover { opacity: 0.85; }
+
+/* ── HERO ── */
+.hero { padding: 7rem 2.5rem 5.5rem; max-width: 1020px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: 0.26em; color: var(--accent); text-transform: uppercase; margin-bottom: 1.75rem; display: flex; align-items: center; gap: 14px; opacity: 0; animation: fadeUp 0.65s ease 0.05s forwards; }
+.hero-eyebrow::before { content: ''; width: 36px; height: 1px; background: var(--accent); flex-shrink: 0; }
+h1 { font-size: clamp(3.6rem, 9vw, 7rem); font-weight: 700; line-height: 0.9; letter-spacing: -0.038em; margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.65s ease 0.13s forwards; }
+h1 .a { color: var(--accent); }
+.hero-sub { font-size: 1.05rem; color: var(--text-secondary); max-width: 540px; line-height: 1.85; margin-bottom: 0.9rem; font-weight: 300; opacity: 0; animation: fadeUp 0.65s ease 0.21s forwards; }
+.hero-byline { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 2.75rem; opacity: 0; animation: fadeUp 0.65s ease 0.26s forwards; line-height: 1.8; }
+.hero-byline span { color: var(--accent); }
+.hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.65s ease 0.32s forwards; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+
+.btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #09090c; padding: 0.8rem 1.75rem; border-radius: 3px; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-decoration: none; text-transform: uppercase; transition: opacity 0.2s, transform 0.15s; }
+.btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+.btn-outline { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(126,200,244,0.28); color: var(--text-primary); padding: 0.8rem 1.75rem; border-radius: 3px; font-size: 12px; font-weight: 400; letter-spacing: 0.1em; text-decoration: none; text-transform: uppercase; transition: all 0.2s; }
+.btn-outline:hover { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+/* ── STAT BAR ── */
+.stat-bar { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); display: flex; max-width: 1020px; margin: 0 auto; overflow-x: auto; }
+.stat { flex: 1; min-width: 120px; padding: 1.6rem 1.75rem; border-right: 1px solid var(--border); }
+.stat:last-child { border-right: none; }
+.stat-val { font-family: var(--mono); font-size: 1.75rem; font-weight: 500; color: var(--text-primary); display: block; line-height: 1.05; }
+.stat-val em { font-style: normal; color: var(--accent); }
+.stat-label { font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--text-muted); margin-top: 7px; display: block; }
+
+/* ── SECTIONS ── */
+.section-wrap { padding: 5.5rem 2.5rem; max-width: 1020px; margin: 0 auto; }
+.section-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.26em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2.5rem; display: flex; align-items: center; gap: 14px; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+h2 { font-size: 2.2rem; font-weight: 600; letter-spacing: -0.025em; line-height: 1.08; }
+.divider { height: 1px; background: var(--border); max-width: 1020px; margin: 0 auto; }
+
+/* ── ABOUT ── */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4.5rem; align-items: start; margin-top: 2.75rem; }
+.about-text h2 { margin-bottom: 1.5rem; }
+.about-text p { color: var(--text-secondary); font-size: 0.93rem; line-height: 1.92; margin-bottom: 0.9rem; font-weight: 300; }
+.about-text p strong { color: var(--text-primary); font-weight: 600; }
+
+.cred-list { display: flex; flex-direction: column; gap: 8px; }
+.cred-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 4px; font-size: 12px; transition: border-color 0.2s; }
+.cred-item:hover { border-color: var(--border-accent); }
+.cred-icon { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; color: var(--accent); background: var(--accent-dim); padding: 3px 7px; border-radius: 2px; white-space: nowrap; margin-top: 1px; flex-shrink: 0; min-width: 38px; text-align: center; }
+.cred-text { color: var(--text-secondary); line-height: 1.55; }
+.cred-text strong { color: var(--text-primary); font-weight: 600; display: block; margin-bottom: 2px; }
+
+/* highlight callout */
+.highlight-box {
+  margin-top: 1.5rem; padding: 1rem 1.25rem;
+  background: rgba(126,200,244,0.06); border: 1px solid var(--border-accent);
+  border-radius: 4px; display: flex; align-items: flex-start; gap: 12px;
+}
+.highlight-box-icon { font-family: var(--mono); font-size: 9px; color: var(--accent); background: var(--accent-dim); padding: 3px 8px; border-radius: 2px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+.highlight-box p { font-size: 12px; color: var(--text-secondary); line-height: 1.65; }
+.highlight-box p strong { color: var(--accent); font-weight: 600; }
+
+/* ── PLATFORMS SECTION ── */
+/* Main brand row */
+.platforms-main { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 2.5rem; }
+/* Secondary row label */
+.platforms-sub-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; color: var(--text-muted); text-transform: uppercase; margin: 1.75rem 0 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); }
+.platforms-sub { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+
+.platform-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; text-decoration: none; transition: border-color 0.25s, transform 0.25s; display: flex; flex-direction: column; gap: 0.85rem; position: relative; overflow: hidden; }
+.platform-card::before { content: ''; position: absolute; inset: 0; background: var(--accent-glow); opacity: 0; transition: opacity 0.25s; }
+.platform-card:hover { border-color: var(--border-accent); transform: translateY(-3px); }
+.platform-card:hover::before { opacity: 1; }
+.platform-card.featured { border-color: var(--border-accent); }
+
+.platform-icon { width: 38px; height: 38px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; font-family: var(--mono); position: relative; }
+.icon-tv   { background: rgba(78,160,248,0.13); color: #5ab2f5; }
+.icon-x    { background: rgba(210,215,235,0.07); color: #c0c4d4; }
+.icon-sub  { background: rgba(255,110,50,0.11); color: #ff7a35; }
+.icon-li   { background: rgba(10,120,210,0.13); color: #3a9de8; }
+.icon-arch { background: rgba(180,140,255,0.11); color: #b48cff; }
+
+.platform-header { display: flex; align-items: center; gap: 10px; }
+.platform-name { font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: var(--text-primary); position: relative; }
+.platform-handle { font-family: var(--mono); font-size: 10px; color: var(--text-muted); }
+.platform-badge { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; color: var(--accent); background: var(--accent-dim); padding: 1px 7px; border-radius: 2px; margin-left: auto; white-space: nowrap; flex-shrink: 0; }
+.platform-desc { font-size: 11px; color: var(--text-muted); line-height: 1.62; flex: 1; position: relative; }
+.platform-stat { font-family: var(--mono); font-size: 10px; color: var(--text-muted); }
+.platform-stat span { color: var(--text-secondary); }
+.platform-link { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--accent); text-transform: uppercase; display: flex; align-items: center; gap: 5px; position: relative; }
+.platform-link::after { content: '→'; }
+
+/* ── ANALYSIS SECTION ── */
+.ideas-grid { display: grid; grid-template-columns: 1.55fr 1fr; gap: 1.25rem; margin-top: 2.5rem; align-items: start; }
+.side-ideas { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.idea-featured { background: var(--card-bg); border: 1px solid var(--border-accent); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; text-decoration: none; transition: border-color 0.22s, transform 0.22s; }
+.idea-featured:hover { border-color: var(--accent); transform: translateY(-3px); }
+.idea-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; text-decoration: none; display: flex; flex-direction: column; transition: border-color 0.22s, transform 0.22s; }
+.idea-card:hover { border-color: var(--border-accent); transform: translateY(-3px); }
+
+.idea-chart-zone { background: #0d1117; position: relative; overflow: hidden; }
+.idea-chart-zone.tall  { height: 200px; }
+.idea-chart-zone.short { height: 120px; }
+
+.idea-body    { padding: 1.25rem 1.5rem; flex: 1; }
+.idea-body-sm { padding: 1rem 1.25rem; flex: 1; }
+.idea-badges { display: flex; gap: 6px; margin-bottom: 9px; flex-wrap: wrap; }
+.badge { font-family: var(--mono); font-size: 9px; letter-spacing: 0.13em; padding: 3px 8px; border-radius: 2px; text-transform: uppercase; }
+.badge-blue   { background: var(--accent-dim); color: var(--accent); }
+.badge-green  { background: rgba(110,224,160,0.1); color: var(--green); }
+.badge-yellow { background: rgba(240,200,80,0.1); color: #f0d060; }
+.badge-red    { background: rgba(224,126,126,0.1); color: var(--red); }
+.badge-gray   { background: rgba(255,255,255,0.05); color: var(--text-muted); }
+.idea-title    { font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; line-height: 1.3; }
+.idea-title-sm { font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 5px; line-height: 1.3; }
+.idea-desc    { font-size: 13px; color: var(--text-secondary); line-height: 1.75; font-weight: 300; }
+.idea-desc-sm { font-size: 12px; color: var(--text-muted); line-height: 1.65; font-weight: 300; }
+.idea-footer    { padding: 1rem 1.5rem; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.idea-footer-sm { padding: 0.75rem 1.25rem; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+.idea-meta-text { font-family: var(--mono); font-size: 10px; color: var(--text-muted); letter-spacing: 0.08em; }
+.idea-link { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--accent); text-decoration: none; text-transform: uppercase; display: flex; align-items: center; gap: 4px; white-space: nowrap; transition: opacity 0.2s; }
+.idea-link:hover { opacity: 0.72; }
+.idea-link::after { content: '→'; }
+
+/* hall of fame callout */
+.hof-box {
+  margin-top: 2rem; padding: 1.25rem 1.5rem;
+  background: var(--card-bg); border: 1px solid rgba(240,200,80,0.2);
+  border-radius: 6px;
+}
+.hof-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.16em; color: #f0d060; text-transform: uppercase; margin-bottom: 0.75rem; }
+.hof-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.75rem; }
+.hof-item { padding: 0.75rem; background: rgba(255,255,255,0.02); border-radius: 4px; border: 1px solid var(--border); }
+.hof-date { font-family: var(--mono); font-size: 9px; color: var(--text-muted); margin-bottom: 4px; }
+.hof-asset { font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--accent); margin-bottom: 2px; }
+.hof-call { font-size: 11px; color: var(--text-secondary); line-height: 1.5; }
+
+/* ── WRITING ── */
+.posts-list { display: flex; flex-direction: column; margin-top: 2rem; }
+.post-row { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 1.1rem 0; border-bottom: 1px solid var(--border); text-decoration: none; transition: padding-left 0.2s; }
+.post-row:first-child { border-top: 1px solid var(--border); }
+.post-row:hover { padding-left: 10px; }
+.post-title { font-size: 14px; font-weight: 400; color: var(--text-primary); flex: 1; line-height: 1.4; }
+.post-tag { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; color: var(--accent); background: var(--accent-dim); padding: 2px 8px; border-radius: 2px; white-space: nowrap; text-transform: uppercase; }
+.post-source { font-family: var(--mono); font-size: 10px; color: var(--text-muted); white-space: nowrap; }
+.post-arrow { color: var(--text-muted); flex-shrink: 0; transition: color 0.2s, transform 0.2s; }
+.post-row:hover .post-arrow { color: var(--accent); transform: translateX(4px); }
+
+/* ── CONTACT ── */
+.contact-box { background: var(--card-bg); border: 1px solid var(--border-accent); border-radius: 8px; padding: 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; margin-top: 2.5rem; position: relative; overflow: hidden; }
+.contact-box::after { content: 'VQ'; position: absolute; right: -10px; bottom: -50px; font-family: var(--mono); font-size: 180px; font-weight: 700; color: rgba(126,200,244,0.035); letter-spacing: -0.05em; pointer-events: none; user-select: none; }
+.contact-heading { font-size: 1.8rem; font-weight: 600; letter-spacing: -0.025em; }
+.contact-sub { font-size: 13px; color: var(--text-muted); margin-top: 0.5rem; line-height: 1.7; }
+
+/* ── FOOTER ── */
+footer { border-top: 1px solid var(--border); padding: 1.75rem 2.5rem; display: flex; justify-content: space-between; align-items: center; max-width: 1020px; margin: 0 auto; flex-wrap: wrap; gap: 1rem; }
+.footer-logo { font-family: var(--mono); font-size: 12px; letter-spacing: 0.2em; color: var(--accent); }
+.footer-links { display: flex; gap: 1.5rem; list-style: none; }
+.footer-links a { font-size: 11px; color: var(--text-muted); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; }
+.footer-links a:hover { color: var(--accent); }
+.footer-copy { font-family: var(--mono); font-size: 11px; color: var(--text-muted); }
+
+/* ── DISCLAIMER ── */
+.disclaimer { background: rgba(255,255,255,0.02); border-top: 1px solid var(--border); padding: 1rem 2.5rem; max-width: 1020px; margin: 0 auto; }
+.disclaimer p { font-size: 10px; color: var(--text-muted); line-height: 1.6; font-family: var(--mono); letter-spacing: 0.04em; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 800px) {
+  nav { padding: 0 1.25rem; }
+  .nav-links { gap: 1rem; }
+  .nav-links a { font-size: 10px; }
+  .nav-cta { display: none; }
+  .hero { padding: 4rem 1.25rem 3rem; }
+  h1 { font-size: 3.2rem; }
+  .section-wrap { padding: 3.5rem 1.25rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .platforms-main { grid-template-columns: 1fr; }
+  .platforms-sub { grid-template-columns: 1fr; }
+  .ideas-grid { grid-template-columns: 1fr; }
+  .hof-grid { grid-template-columns: 1fr; }
+  .contact-box { padding: 2rem; }
+  footer { padding: 1.5rem 1.25rem; }
+  .disclaimer { padding: 1rem 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">VIAQUANT</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#platforms">Platforms</a></li>
+    <li><a href="#analysis">Analysis</a></li>
+    <li><a href="#writing">Writing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://www.tradingview.com/u/VIAQUANT/" target="_blank" class="nav-cta">Follow on TV ↗</a>
+</nav>
+
+<!-- LIVE TICKER (Official TradingView widget) -->
+<div class="tradingview-widget-container" style="min-height:46px;">
+  <div class="tradingview-widget-container__widget"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+  {
+    "symbols": [
+      {"proName":"FOREXCOM:SPXUSD","title":"S&P 500"},
+      {"proName":"NASDAQ:QQQ","title":"QQQ"},
+      {"proName":"BINANCE:BTCUSDT","title":"BTC"},
+      {"proName":"BINANCE:ETHUSDT","title":"ETH"},
+      {"proName":"CRYPTOCAP:TOTAL","title":"Total Crypto"},
+      {"proName":"TVC:GOLD","title":"Gold"},
+      {"proName":"TVC:DXY","title":"DXY"},
+      {"proName":"TVC:VIX","title":"VIX"},
+      {"proName":"NASDAQ:NVDA","title":"NVDA"},
+      {"proName":"BINANCE:SOLUSDT","title":"SOL"}
+    ],
+    "showSymbolLogo": false,
+    "colorTheme": "dark",
+    "isTransparent": true,
+    "displayMode": "adaptive",
+    "locale": "en"
+  }
+  </script>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Quantitative Analyst &amp; Trader · 800+ Verified Public Predictions</p>
+  <h1>VIA<span class="a">QUANT</span></h1>
+  <p class="hero-sub">I apply predictive modeling and pattern recognition to forecast future price action across multiple asset classes — delivering some of the most unique and accurate analysis on TradingView.</p>
+  <p class="hero-byline">
+    <span>Ryan Bolks</span> &nbsp;·&nbsp; Founder, Viaquant &nbsp;·&nbsp; Tulsa, OK<br/>
+    Financial Management &amp; Predictive Analytics — Oral Roberts University &nbsp;·&nbsp; 7+ years experience
+  </p>
+  <div class="hero-ctas">
+    <a href="#analysis" class="btn-primary">View latest analysis ↓</a>
+    <a href="https://www.tradingview.com/u/VIAQUANT/" target="_blank" class="btn-outline">TradingView ↗</a>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stat-bar">
+  <div class="stat"><span class="stat-val"><em id="ideas-count">0</em></span><span class="stat-label">Published Ideas</span></div>
+  <div class="stat"><span class="stat-val"><em id="followers-count">0</em></span><span class="stat-label">TV Followers</span></div>
+  <div class="stat"><span class="stat-val"><em>800+</em></span><span class="stat-label">Verified Predictions</span></div>
+  <div class="stat"><span class="stat-val"><em>7+</em></span><span class="stat-label">Years Experience</span></div>
+  <div class="stat"><span class="stat-val"><em>3</em></span><span class="stat-label">Asset Classes</span></div>
+</div>
+
+<!-- ABOUT -->
+<div class="section-wrap" id="about">
+  <p class="section-label">01 — About Ryan Bolks</p>
+  <div class="about-grid">
+    <div class="about-text">
+      <h2>Building long-term strategies through data-driven analytics.</h2>
+      <p style="margin-top:1.5rem;">I'm <strong>Ryan Bolks</strong> — Founder of VIAQUANT and a quantitative analyst and trader with <strong>7+ years of experience</strong> researching, developing, and refining systematic trading strategies across digital assets, equities, and commodities.</p>
+      <p>My work centers on <strong>predictive modeling and pattern recognition</strong> — building mathematical frameworks that identify high-probability market behavior before it unfolds. With <strong>800+ verified public predictions</strong> on the record, the methodology speaks for itself.</p>
+      <p>I hold a degree in <strong>Financial Management &amp; Predictive Analytics</strong> from Oral Roberts University. In addition to VIAQUANT, I serve as an advisory partner at <strong>Resound Structured Capital</strong>, applying the same quantitative discipline to private capital markets.</p>
+      <div class="highlight-box">
+        <span class="highlight-box-icon">EDGE</span>
+        <p>In November 2022, VIAQUANT called BTC long at <strong>$16,150</strong> — 1 day after the bear market bottom, within $750 of the lowest price available during the cycle.</p>
+      </div>
+    </div>
+    <div class="cred-list">
+      <div class="cred-item"><span class="cred-icon">EDU</span><div class="cred-text"><strong>Oral Roberts University</strong>B.S. Financial Management &amp; Predictive Analytics · 2017–2021</div></div>
+      <div class="cred-item"><span class="cred-icon">ROLE</span><div class="cred-text"><strong>Founder — VIAQUANT / Viaquant Partners</strong>Quantitative research · Predictive modeling · Multi-asset analysis</div></div>
+      <div class="cred-item"><span class="cred-icon">ADV</span><div class="cred-text"><strong>Advisory Partner — Resound Structured Capital</strong>Capital markets advisory &amp; investment strategy</div></div>
+      <div class="cred-item"><span class="cred-icon">TV</span><div class="cred-text"><strong>TradingView — Essential Member</strong>851 published ideas · 985 followers · Since April 2022</div></div>
+      <div class="cred-item"><span class="cred-icon">LI</span><div class="cred-text"><strong>LinkedIn — 500+ Connections · 574 Followers</strong>Quantitative Analyst &amp; Trader · Founder, Viaquant</div></div>
+      <div class="cred-item"><span class="cred-icon">NOTE</span><div class="cred-text"><strong>Disclaimer</strong>All content is for educational and informational purposes only. Not investment advice. Views are my own.</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PLATFORMS -->
+<div class="section-wrap" id="platforms">
+  <p class="section-label">02 — Platforms</p>
+  <h2>Where to find me</h2>
+
+  <!-- Main brand platforms -->
+  <div class="platforms-main">
+
+    <a href="https://www.tradingview.com/u/VIAQUANT/" target="_blank" class="platform-card featured">
+      <div class="platform-header">
+        <div class="platform-icon icon-tv">TV</div>
+        <div>
+          <p class="platform-name">TradingView</p>
+          <p class="platform-handle">@VIAQUANT</p>
+        </div>
+        <span class="platform-badge">Primary</span>
+      </div>
+      <p class="platform-desc">851 published ideas covering crypto, equities, and macro. Predictive model outputs with full chart annotations and verified track record since April 2022.</p>
+      <div class="platform-stat">Followers: <span>985</span> &nbsp;·&nbsp; Ideas: <span>851</span> &nbsp;·&nbsp; Scripts: <span>1</span></div>
+      <span class="platform-link">View all 851 ideas</span>
+    </a>
+
+    <a href="https://www.linkedin.com/in/ryanbolks/" target="_blank" class="platform-card">
+      <div class="platform-header">
+        <div class="platform-icon icon-li">in</div>
+        <div>
+          <p class="platform-name">LinkedIn</p>
+          <p class="platform-handle">Ryan Bolks</p>
+        </div>
+      </div>
+      <p class="platform-desc">Professional background, career history, and credentials for Ryan Bolks. Quantitative Analyst &amp; Trader | 800+ Verified Public Predictions.</p>
+      <div class="platform-stat">Connections: <span>500+</span> &nbsp;·&nbsp; Followers: <span>574</span></div>
+      <span class="platform-link">Connect on LinkedIn</span>
+    </a>
+
+    <a href="https://substack.com/@ryanbolks" target="_blank" class="platform-card">
+      <div class="platform-header">
+        <div class="platform-icon icon-sub">S</div>
+        <div>
+          <p class="platform-name">Substack</p>
+          <p class="platform-handle">@ryanbolks</p>
+        </div>
+      </div>
+      <p class="platform-desc">A research-driven exploration of market structure, price behavior, and macro influence. Long-form analysis shared for educational purposes. Latest: SOL 4H &amp; March 2026 Analysis.</p>
+      <div class="platform-stat">Subscribe for updates</div>
+      <span class="platform-link">Read &amp; subscribe</span>
+    </a>
+
+  </div>
+
+  <!-- X accounts -->
+  <p class="platforms-sub-label">X (Twitter) accounts</p>
+  <div class="platforms-sub">
+
+    <a href="https://x.com/ryanbolks" target="_blank" class="platform-card">
+      <div class="platform-header">
+        <div class="platform-icon icon-x">𝕏</div>
+        <div>
+          <p class="platform-name">Ryan Bolks</p>
+          <p class="platform-handle">@RyanBolks · ✓ Verified</p>
+        </div>
+      </div>
+      <p class="platform-desc">Personal account. Founder of @ViaQuant. Building long-term strategies through data-driven analytics. USA.</p>
+      <div class="platform-stat">Followers: <span>6</span> &nbsp;·&nbsp; Posts: <span>43</span></div>
+      <span class="platform-link">Follow @RyanBolks</span>
+    </a>
+
+    <a href="https://x.com/viaquant" target="_blank" class="platform-card">
+      <div class="platform-header">
+        <div class="platform-icon icon-x">𝕏</div>
+        <div>
+          <p class="platform-name">VIAQUANT</p>
+          <p class="platform-handle">@viaquant</p>
+        </div>
+        <span class="platform-badge">Main Brand</span>
+      </div>
+      <p class="platform-desc">Main brand account. 4+ years of quantitative analysis and advanced charting to identify high-probability market behavior. Joined September 2022.</p>
+      <div class="platform-stat">Followers: <span>68</span> &nbsp;·&nbsp; Posts: <span>349</span></div>
+      <span class="platform-link">Follow @viaquant</span>
+    </a>
+
+    <a href="https://x.com/ViaquantCharts" target="_blank" class="platform-card">
+      <div class="platform-header">
+        <div class="platform-icon icon-arch">VC</div>
+        <div>
+          <p class="platform-name">Viaquant Analytics</p>
+          <p class="platform-handle">@ViaquantCharts</p>
+        </div>
+      </div>
+      <p class="platform-desc">Before &amp; after price action results. Archived charts and verified prediction data for @viaquant. Data updated through January 15, 2026.</p>
+      <div class="platform-stat">Followers: <span>10</span> &nbsp;·&nbsp; Posts: <span>444</span></div>
+      <span class="platform-link">View track record</span>
+    </a>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ANALYSIS -->
+<div class="section-wrap" id="analysis">
+  <p class="section-label">03 — Latest Published Ideas</p>
+  <h2>Most recent analysis</h2>
+
+  <div class="ideas-grid">
+
+    <!-- FEATURED -->
+    <a href="https://www.tradingview.com/u/VIAQUANT/" target="_blank" class="idea-featured">
+      <div class="idea-chart-zone tall">
+        <div class="tradingview-widget-container" style="height:200px; width:100%;">
+          <div class="tradingview-widget-container__widget" style="height:200px;"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+          {"symbol":"FOREXCOM:SPXUSD","width":"100%","height":200,"locale":"en","dateRange":"3M","colorTheme":"dark","isTransparent":true,"autosize":false}
+          </script>
+        </div>
+      </div>
+      <div class="idea-body">
+        <div class="idea-badges">
+          <span class="badge badge-blue">Latest</span>
+          <span class="badge badge-gray">SPX · Weekly</span>
+          <span class="badge badge-yellow">Equities</span>
+        </div>
+        <p class="idea-title">SPX — Nearing 1.618</p>
+        <p class="idea-desc">The S&amp;P 500 is nearing the 1.618 Fibonacci extension of its recent swing high to swing low — a key level that helped predict where major profit-taking would occur. Not a level to dismiss.</p>
+      </div>
+      <div class="idea-footer">
+        <span class="idea-meta-text">VIAQUANT · May 2026</span>
+        <span class="idea-link">View on TradingView</span>
+      </div>
+    </a>
+
+    <div class="side-ideas">
+
+      <a href="https://www.tradingview.com/u/VIAQUANT/" target="_blank" class="idea-card">
+        <div class="idea-chart-zone short">
+          <div class="tradingview-widget-container" style="height:120px; width:100%;">
+            <div class="tradingview-widget-container__widget" style="height:120px;"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+            {"symbol":"CRYPTOCAP:TOTAL","width":"100%","height":120,"locale":"en","dateRange":"1M","colorTheme":"dark","isTransparent":true,"autosize":false}
+            </script>
+          </div>
+        </div>
+        <div class="idea-body-sm">
+          <div class="idea-badges"><span class="badge badge-red">Bearish Setup</span><span class="badge badge-gray">TOTAL · 4H</span></div>
+          <p class="idea-title-sm">TOTAL — LTF Double Top</p>
+          <p class="idea-desc-sm">Crypto market cap forming a double top on the 4H. Hit $2.71T on May 6, secondary rejection at the same level. Bearish near-term signal.</p>
+        </div>
+        <div class="idea-footer-sm">
+          <span class="idea-meta-text">Crypto · May 2026</span>
+          <span class="idea-link">View idea</span>
+        </div>
+      </a>
+
+      <a href="https://www.tradingview.com/u/VIAQUANT/" target="_blank" class="idea-card">
+        <div class="idea-chart-zone short">
+          <div class="tradingview-widget-container" style="height:120px; width:100%;">
+            <div class="tradingview-widget-container__widget" style="height:120px;"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+            {"symbol":"BINANCE:ETHUSDT","width":"100%","height":120,"locale":"en","dateRange":"1M","colorTheme":"dark","isTransparent":true,"autosize":false}
+            </script>
+          </div>
+        </div>
+        <div class="idea-body-sm">
+          <div class="idea-badges"><span class="badge badge-red">Bearish Signal</span><span class="badge badge-gray">ETH · 2D</span></div>
+          <p class="idea-title-sm">ETH — 2×2D Gravestone Doji</p>
+          <p class="idea-desc-sm">ETH has formed another Gravestone Doji on the 2D chart. RSI still struggling to break the 58 level — a repeated bearish confirmation.</p>
+        </div>
+        <div class="idea-footer-sm">
+          <span class="idea-meta-text">Crypto · May 2026</span>
+          <span class="idea-link">View idea</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- Hall of fame predictions -->
+  <div class="hof-box">
+    <p class="hof-label">✦ Hall of Fame — Verified Predictions</p>
+    <div class="hof-grid">
+      <div class="hof-item">
+        <p class="hof-date">Nov 22, 2022</p>
+        <p class="hof-asset">BTC — $16,150</p>
+        <p class="hof-call">Called the long 1 day after bear market bottom. Within $750 of the cycle low.</p>
+      </div>
+      <div class="hof-item">
+        <p class="hof-date">Mar 7, 2024</p>
+        <p class="hof-asset">BTC — $67,293</p>
+        <p class="hof-call">Predicted pullback to 0.786 ($57.4k) then 0.618 ($48–50k) before final ATH breakout. Exact.</p>
+      </div>
+      <div class="hof-item">
+        <p class="hof-date">Ongoing</p>
+        <p class="hof-asset">800+ on record</p>
+        <p class="hof-call">Full archive at @ViaquantCharts — before &amp; after price action results with timestamps.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive full chart -->
+  <div style="margin-top:1.5rem; border-radius:8px; overflow:hidden; border:1px solid var(--border);">
+    <div style="padding:11px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; background:var(--card-bg);">
+      <span style="font-family:var(--mono); font-size:10px; letter-spacing:0.14em; color:var(--text-muted); text-transform:uppercase;">Interactive Chart — Change any symbol</span>
+      <span style="font-family:var(--mono); font-size:10px; color:rgba(126,200,244,0.5);">Powered by TradingView</span>
+    </div>
+    <div class="tradingview-widget-container" style="height:400px;">
+      <div class="tradingview-widget-container__widget" style="height:400px;"></div>
+      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+      {
+        "autosize": true,
+        "symbol": "FOREXCOM:SPXUSD",
+        "interval": "W",
+        "timezone": "America/Chicago",
+        "theme": "dark",
+        "style": "1",
+        "locale": "en",
+        "enable_publishing": false,
+        "hide_side_toolbar": false,
+        "allow_symbol_change": true,
+        "save_image": false,
+        "support_host": "https://www.tradingview.com"
+      }
+      </script>
+    </div>
+  </div>
+
+  <div style="margin-top:1.25rem; display:flex; justify-content:flex-end;">
+    <a href="https://www.tradingview.com/u/VIAQUANT/" target="_blank" class="btn-outline" style="font-size:11px; padding:0.6rem 1.25rem;">Browse all 851 ideas on TradingView ↗</a>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- WRITING -->
+<div class="section-wrap" id="writing">
+  <p class="section-label">04 — Research &amp; Writing</p>
+  <h2>Latest from Substack</h2>
+  <p style="color:var(--text-muted); font-size:13px; margin-top:0.5rem; margin-bottom:0;">A research-driven exploration of market structure, price behavior, and macro influence. <span style="color:var(--text-secondary);">Replace with your actual post titles and direct Substack links.</span></p>
+
+  <div class="posts-list">
+    <a href="https://substack.com/@ryanbolks" target="_blank" class="post-row">
+      <span class="post-title">March 2026 Analysis — SOL 4H Entry &amp; Target</span>
+      <span class="post-tag">Latest</span>
+      <span class="post-source">Apr 3, 2026</span>
+      <span class="post-arrow">→</span>
+    </a>
+    <a href="https://substack.com/@ryanbolks" target="_blank" class="post-row">
+      <span class="post-title">Add your second most recent post title here</span>
+      <span class="post-source">Substack</span>
+      <span class="post-arrow">→</span>
+    </a>
+    <a href="https://substack.com/@ryanbolks" target="_blank" class="post-row">
+      <span class="post-title">Add your third post title here</span>
+      <span class="post-source">Substack</span>
+      <span class="post-arrow">→</span>
+    </a>
+    <a href="https://x.com/viaquant" target="_blank" class="post-row">
+      <span class="post-title">VIAQUANT informed partners to go long BTC at $16,150 — 1 day after bear market bottom</span>
+      <span class="post-tag">Hall of Fame</span>
+      <span class="post-source">Nov 22, 2022</span>
+      <span class="post-arrow">→</span>
+    </a>
+  </div>
+  <div style="margin-top:1.75rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+    <a href="https://substack.com/@ryanbolks" target="_blank" class="btn-outline" style="font-size:11px; padding:0.6rem 1.25rem;">All posts on Substack ↗</a>
+    <a href="https://x.com/ViaquantCharts" target="_blank" class="btn-outline" style="font-size:11px; padding:0.6rem 1.25rem;">Full prediction archive ↗</a>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<div class="section-wrap" id="contact">
+  <p class="section-label">05 — Contact</p>
+  <div class="contact-box">
+    <div>
+      <h2 class="contact-heading">Work with Ryan.</h2>
+      <p class="contact-sub">
+        Open to collaboration, media inquiries, advisory opportunities,<br/>
+        and professional partnerships. Based in Tulsa, OK.
+      </p>
+    </div>
+    <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+      <a href="mailto:hello@viaquant.com" class="btn-primary">Send an email →</a>
+      <a href="https://www.linkedin.com/in/ryanbolks/" target="_blank" class="btn-outline">LinkedIn ↗</a>
+      <a href="https://x.com/ryanbolks" target="_blank" class="btn-outline">DM on X ↗</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">VIAQUANT</span>
+  <ul class="footer-links">
+    <li><a href="https://www.tradingview.com/u/VIAQUANT/" target="_blank">TradingView</a></li>
+    <li><a href="https://x.com/viaquant" target="_blank">@viaquant</a></li>
+    <li><a href="https://x.com/ryanbolks" target="_blank">@RyanBolks</a></li>
+    <li><a href="https://x.com/ViaquantCharts" target="_blank">@ViaquantCharts</a></li>
+    <li><a href="https://substack.com/@ryanbolks" target="_blank">Substack</a></li>
+    <li><a href="https://www.linkedin.com/in/ryanbolks/" target="_blank">LinkedIn</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 VIAQUANT · Ryan Bolks</span>
+</footer>
+
+<div class="disclaimer">
+  <p>All content is for educational and informational purposes only. This is not investment advice. Views expressed are those of Ryan Bolks and VIAQUANT and do not constitute financial guidance. Past prediction accuracy does not guarantee future results.</p>
+</div>
+
+<script>
+function countUp(el, target, duration) {
+  let start = 0;
+  const step = target / (duration / 16);
+  const timer = setInterval(() => {
+    start += step;
+    if (start >= target) { start = target; clearInterval(timer); }
+    el.textContent = Math.round(start).toLocaleString();
+  }, 16);
+}
+window.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    countUp(document.getElementById('ideas-count'), 851, 1800);
+    countUp(document.getElementById('followers-count'), 985, 1500);
+  }, 300);
+});
+</script>
+</body>
+</html>
